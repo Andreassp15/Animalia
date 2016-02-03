@@ -5,20 +5,13 @@ public class Movement : MonoBehaviour {
 
 	public int forwardSpeed = 1;
 
-	// Use this for initialization
-	void Start () 
-	{
-	
-	}
-	
-	// Update is called once per frame
 	void Update ()
 	{
 		//Moves character forward
 		transform.position += Vector3.forward * forwardSpeed * Time.deltaTime;
-		if (Input.GetKeyDown (KeyCode.DownArrow)) 
-			
-		//Moves character sideways
+
+        //Moves character sideways
+        if (Input.GetKeyDown (KeyCode.DownArrow)) 
 		{
 			transform.position = new Vector3 (transform.position.x+1,transform.position.y,transform.position.z);
 		}
@@ -27,9 +20,11 @@ public class Movement : MonoBehaviour {
 			transform.position = new Vector3 (transform.position.x-1,transform.position.y,transform.position.z);
 		}
 	}
-	//void OnTriggerEnter(Collider other)
-	//{
-	//	if (other.tag == "Block")
-	//		transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 2);
-	//}
+    /*
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Block")
+			transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 2);
+	}
+    */
 }

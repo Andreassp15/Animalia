@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Char_Switch : MonoBehaviour {
+public class Char_Switch : MonoBehaviour
+{
 	
 	public int currentChar;
 	public Transform[] Characters;
  
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () 
 	{
 		if (Input.GetKeyDown (KeyCode.Alpha1)) 
@@ -31,6 +26,7 @@ public class Char_Switch : MonoBehaviour {
 			changeCharacter (3);
 		}
 	}
+
 	public void changeCharacter(int num)
 	{
 		currentChar = num;

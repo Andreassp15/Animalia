@@ -1,39 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
-
-	public int forwardSpeed = 1;
+public class Movement : MonoBehaviour
+{
     public Rigidbody Characters;
-    
+    bool moveLeft;
+    bool moveRight;
+
     void Start()
     {
         Characters = GetComponent<Rigidbody>();
+        Characters.AddForce(0f, 0f, 15f, ForceMode.Impulse);
     }
-    void Update()
-    {
-        //Moves character forward
-     //   transform.position += Vector3.forward * forwardSpeed * Time.deltaTime;
-    }
+
     void FixedUpdate()
     {
         //Moves character forward
-        Characters.MovePosition(transform.position + transform.forward * forwardSpeed * Time.deltaTime);
+        Characters.AddForce(0f, 0f, 100f * Time.deltaTime, ForceMode.Acceleration);
+
         //Moves character sideways
-        if (Input.GetKeyDown (KeyCode.DownArrow)) 
-		{
-            transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-		}
-		if (Input.GetKeyDown (KeyCode.UpArrow)) 
-		{
-            transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
-		}
-	}
-    /*
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Block")
-			transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 2);
-	}
-    */
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (moveRight == false)
+            {
+                transform.Translate(Vector3.right*3);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (moveLeft == false)
+            {
+                transform.Translate(Vector3.left*3);
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name == "Collider_Edge2")
+        {
+            moveLeft = true;
+        }
+        if (other.transform.name == "Collider_Edge1")
+        {
+            moveRight = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform.name == "Collider_Edge2")
+        {
+            moveLeft = false;
+        }
+        if (other.transform.name == "Collider_Edge1")
+        {
+            moveRight = false;
+        }
+    }
 }
+

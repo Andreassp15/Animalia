@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Test_Course1.unity
+- path: Assets/animaltest.unity
   isLoaded: 1
   isActive: 1
